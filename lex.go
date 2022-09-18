@@ -1,7 +1,9 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 	"strings"
 )
 
@@ -187,15 +189,12 @@ func lex(sentence string, Array AssocArray) []int {
 func main() {
 
 	var tree AssocArray
-	var s string
+	var line string
 	tree = &AvlNode{}
-	s = "alpha x1 beta alpha beta ggg"
-	fmt.Println(s)
-	fmt.Println(lex(s, tree))
-	s2 := "    alpha x1     beta     alpha beta     ggg    1  56 "
-	fmt.Println(s2)
-	fmt.Println(lex(s2, tree))
-	s3 := "    a b c d a b d g g k m b "
-	fmt.Println(s3)
-	fmt.Println(lex(s3, tree))
+	scanner := bufio.NewScanner(os.Stdin)
+	if scanner.Scan() {
+		line = scanner.Text()
+	}
+
+	fmt.Println(lex(line, tree))
 }
