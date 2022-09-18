@@ -1,10 +1,5 @@
 package avltree
 
-import (
-	"fmt"
-	"math"
-)
-
 type Element struct {
 	s string
 	x int
@@ -150,65 +145,4 @@ func RightRotate(tree *AvlNode) *AvlNode {
 	}
 
 	return tree
-}
-
-func DrawTree(tree *AvlNode) {
-	var s []*AvlNode
-	var nextLine *AvlNode
-	var curH int
-	newLine := true
-
-	for tree != nil {
-		curH = tree.findMaxHeight()
-		if nextLine == tree {
-			fmt.Println()
-			//maxLineNum = int(math.Pow(2, float64(curL)))
-			newLine = true
-			nextLine = nil
-		}
-
-		printSpace(int(math.Pow(2, float64(curH-1))))
-
-		if !newLine {
-			if curH == 0 || curH == 1 {
-				printSpace(1)
-			} else {
-				printSpace(int(math.Pow(2, float64(curH-1))))
-			}
-		} else {
-			newLine = false
-			if curH == 0 {
-				printSpace(1)
-			}
-		}
-
-		fmt.Printf("%v ", tree.Elem)
-
-		if tree.Left != nil {
-			if nextLine == nil {
-				nextLine = tree.Left
-			}
-			s = append(s, tree.Left)
-		}
-		if tree.Right != nil {
-			if nextLine == nil {
-				nextLine = tree.Right
-			}
-			s = append(s, tree.Right)
-		}
-
-		if len(s) > 0 {
-			tree = s[0]
-			s = s[1:]
-		} else {
-			tree = nil
-		}
-	}
-
-	fmt.Println()
-}
-func printSpace(spaceNum int) {
-	for i := 0; i < spaceNum; i++ {
-		fmt.Printf("  ")
-	}
 }
