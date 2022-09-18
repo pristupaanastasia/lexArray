@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"strings"
 )
 
@@ -181,4 +182,20 @@ func lex(sentence string, Array AssocArray) []int {
 		}
 	}
 	return solve
+}
+
+func main() {
+
+	var tree AssocArray
+	var s string
+	tree = &AvlNode{}
+	s = "alpha x1 beta alpha beta ggg"
+	fmt.Println(s)
+	fmt.Println(lex(s, tree))
+	s2 := "    alpha x1     beta     alpha beta     ggg    1  56 "
+	fmt.Println(s2)
+	fmt.Println(lex(s2, tree))
+	s3 := "    a b c d a b d g g k m b "
+	fmt.Println(s3)
+	fmt.Println(lex(s3, tree))
 }
